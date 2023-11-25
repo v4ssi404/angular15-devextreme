@@ -2,16 +2,15 @@ import 'zone.js/dist/zone';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
+import {ButtonComponent} from "./components/button/button.component";
+import {ButtonDirective} from "./directives/button.directive";
 
 @Component({
   selector: 'my-app',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent, ButtonDirective],
   template: `
-    <h1>Hello from {{name}}!</h1>
-    <a target="_blank" href="https://angular.io/start">
-      Learn more about Angular 
-    </a>
+    <app-button></app-button>
   `,
 })
 export class App {

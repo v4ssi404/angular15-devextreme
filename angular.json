@@ -17,8 +17,12 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "assets": [],
-            "styles": ["src/global_styles.css"],
-            "scripts": []
+            "styles": [
+              "node_modules/devextreme/dist/css/dx.light.css",
+              "src/global_styles.css"
+            ],
+            "scripts": [],
+            "tsConfig": "tsconfig.json"
           },
           "configurations": {
             "production": {
@@ -31,7 +35,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
