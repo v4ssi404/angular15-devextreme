@@ -4,7 +4,7 @@ import {NgIf} from "@angular/common";
 import { uniqueId } from 'lodash';
 
 @Component({
-  selector: 'permission-tooltip-container',
+  selector: 'permission-tooltip-button-addon',
   template: `
       <div #containerDiv [id]="containerId">
           <ng-content></ng-content>
@@ -30,7 +30,7 @@ import { uniqueId } from 'lodash';
     display: 'block'
   }
 })
-export class PermissionTooltipContainerComponent implements AfterViewInit {
+export class PermissionTooltipButtonAddonComponent implements AfterViewInit {
   @ViewChild('containerDiv', { static: false }) containerDiv: ElementRef;
   @ViewChild('tooltip', { static: false }) tooltip: DxTooltipComponent;
   @Input() isTooltipVisible = false;
