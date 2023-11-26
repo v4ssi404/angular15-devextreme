@@ -26,9 +26,6 @@ import { uniqueId } from 'lodash';
     NgIf
   ],
   standalone: true,
-  host: {
-    display: 'block'
-  }
 })
 export class PermissionTooltipContainerComponent implements AfterViewInit {
   @ViewChild('containerDiv', { static: false }) containerDiv: ElementRef;
