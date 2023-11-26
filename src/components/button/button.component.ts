@@ -6,9 +6,10 @@ import {ButtonDirective} from "../../directives/button.directive";
   standalone: true,
   selector: 'app-button',
   template: `
+      <!-- has permission is a boolean value returned by a pipe -->
       <dx-button
         text="Click me"
-        [disabled]="true"
+        [hasPermission]="false"
       ></dx-button>
   `,
   imports: [

@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Directive, ElementRef, OnInit, ViewContainerRef} from "@angular/core";
+import {AfterViewInit, ChangeDetectorRef, Directive, ElementRef, Input, OnInit, ViewContainerRef} from "@angular/core";
 import {
   PermissionTooltipContainerComponent
 } from "../components/permission-tooltip-container/permission-tooltip-container.component";
@@ -9,6 +9,7 @@ import {DxButtonComponent} from "devextreme-angular";
   standalone: true,
 })
 export class ButtonDirective implements OnInit, AfterViewInit {
+  @Input() hasPermission = false;
   constructor(
     private dxButton: DxButtonComponent,
     private viewContainerRef: ViewContainerRef,
@@ -23,7 +24,12 @@ export class ButtonDirective implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     const componentRef = this.viewContainerRef.createComponent(PermissionTooltipContainerComponent);
     const containerEl = (componentRef.hostView as any).rootNodes[0].childNodes[0] as HTMLElement;
-    componentRef.instance.isTooltipVisible = this.dxButton.instance.option('disabled');
+    componentRef.instance.isTooltipVisible = !this.hasPermission;
+    if (!this.hasPermission) {
+      this.dxButton.instance.option({
+        disabled: true,
+      });
+    }
     containerEl.appendChild(this.el.nativeElement);
 
     this.ref.detectChanges();
