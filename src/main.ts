@@ -17,17 +17,22 @@ import {ButtonNoWrapperDirective} from "./directives/button-no-wrapper.directive
       text="Click me 1"
       [hasPermission]="false"
     ></dx-button>
+   <!-- test case to use set disabled in other cases -->
     <dx-button
       withPermissions
-      text="Click me 2"
+      text="Disabled by something else and has permission true"
+      (onClick)="alert('clicked')"
+      [disabled]="secondButtonDisabled"
+      [hasPermission]="true"
+    ></dx-button>
+    <dx-button
+      withPermissions
+      [text]="'LocalStateDisabled: ' + thirdButtonDisabled + ' by something else and has permission false'"
+      (onClick)="alert('clicked')"
+      [disabled]="thirdButtonDisabled"
       [hasPermission]="false"
     ></dx-button>
-    <dx-button
-      withPermissions
-      text="button that has permission but disabled for other reasons"
-      [hasPermission]="true"
-      [disabled]="true"
-    ></dx-button>
+    <!-- test case to with directive that overrides hover -->
     <dx-button
       noWrapper
       id="button-without-wrapper1"
@@ -39,6 +44,15 @@ import {ButtonNoWrapperDirective} from "./directives/button-no-wrapper.directive
       text="button without wrapper without id"
       [hasPermission]="false"
     ></dx-button>
+    <!-- controls -->
+    <dx-button
+      text="click to enable second button"
+      (onClick)="secondButtonDisabled = false"
+    ></dx-button>
+    <dx-button
+      text="click to enable third button"
+      (onClick)="thirdButtonDisabled = false"
+    ></dx-button>
   `,
   styles: [
     'dx-button { margin-bottom: 20px; }'
@@ -46,6 +60,9 @@ import {ButtonNoWrapperDirective} from "./directives/button-no-wrapper.directive
 })
 export class App {
   name = 'Angular';
+  secondButtonDisabled = true;
+  thirdButtonDisabled = true;
+  protected readonly alert = alert;
 }
 
 bootstrapApplication(App);
